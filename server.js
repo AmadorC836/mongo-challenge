@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const BlogModel = require('./models/blogs');
 
 const app = express()
 const port = process.env.PORT;
@@ -19,8 +20,19 @@ mongoose.connect(process.env.MONGO_DB_URI)
 // routes
 app.get('/', (req, res) => res.status(200).send('Server is Running.'));
 
-app.get('/add-blog', (req, res) => {
+app.post('/add-blog', (req, res) => {
+    const incomingData = req.body;
 
+    try {
+        const newBlog = new BlogModel(incomingData);
+        newBlog.save();
+
+        res.status(200).send({
+            message: 'saved blog'
+        })
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 app.listen(port, () => {

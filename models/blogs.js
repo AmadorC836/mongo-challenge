@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+const mongoose = require('mongoose');
 
-const schema = new Schema(
+const schema = new mongoose.Schema(
   {
     title: { type: String, default: "" },
     author: { type: String, default: "" },
@@ -18,4 +18,4 @@ const schema = new Schema(
 
 const BlogModel = mongoose.model('blogs-challenge', schema);
 
-export default BlogModel;
+module.exports = BlogModel;
