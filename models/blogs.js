@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema(
   {
-    title: { type: String, default: "" },
-    author: { type: String, default: "" },
-    note: { type: String, default: "" },
+    username: { type: String, default: "" },
+    age: { type: Number, default: 0 },
+    password: { type: Object, default: "" },
   },
   {
     timestamps: {
